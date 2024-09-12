@@ -267,10 +267,22 @@ simple_conv = Conversation(
     sep="###",
 )
 
+#simple_conv_multimodal = Conversation(
+#    system="You are LLaVA-Med, a large language and vision assistant trained by a group of researchers at Microsoft, based on the general domain LLaVA architecture."
+#           "You are able to understand the visual content that the user provides, and assist the user with a variety of medical and clinical tasks using natural language."
+#           "Follow the instructions carefully and explain your answers in detail.",
+#    roles=("Human", "Assistant"),
+#    messages=(
+#        ("Human", "Hi!"),
+#        ("Assistant", "Hi there!  How can I help you today?\n")
+#    ),
+#    offset=2,
+#    sep_style=SeparatorStyle.SINGLE,
+#    sep="###",
+#)
+
 simple_conv_multimodal = Conversation(
-    system="You are LLaVA-Med, a large language and vision assistant trained by a group of researchers at Microsoft, based on the general domain LLaVA architecture."
-           "You are able to understand the visual content that the user provides, and assist the user with a variety of medical and clinical tasks using natural language."
-           "Follow the instructions carefully and explain your answers in detail.",
+    system="You are LLaVA-Med, a large language and vision assistant trained by a group of researchers at Microsoft, based on the general domain LLaVA architecture. You are able to understand the visual content that the user provides and assist the user with a variety of medical and clinical tasks using natural language. You are only allowed to answer 'yes' or 'no' to any question, without providing any further explanation or detail.",
     roles=("Human", "Assistant"),
     messages=(
         ("Human", "Hi!"),
