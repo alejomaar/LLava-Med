@@ -129,7 +129,7 @@ cd LLaVA-Med
 ```Shell
 conda create -n llava-med python=3.10 -y
 conda activate llava-med
-pip install --upgrade pip  # enable PEP 660 support
+pip install --upgrade pip  
 ```
 
 3. Install additional packages for training cases
@@ -147,6 +147,27 @@ pip install einops ninja open-clip-torch
 pip install flash-attn --no-build-isolation
 ```
 
+3. Download LLaVa weights
+git lfs clone https://huggingface.co/huggyllama/llama-7b
+
+
+python3 -m llava.model.apply_delta \
+    --base llama-7b \
+    --target llama-7b-vqa-rad \
+    --delta data_RAD-9epoch_delta
+
+wget https://hanoverprod.z21.web.core.windows.net/med_llava/models/data_RAD-9epoch_delta.zip
+
+python llava/eval/model_vqa_med.py --model-name llama-7b-vqa-rad \
+    --question-file data/test.json \
+    --image-folder VQA-RAD/images \
+    --answers-file data/test-answer.jsonl
+
+python llava/eval/run_eval.py \
+    --gt data/test.json \
+    --pred data/test-answer.jsonl
+
+python llava/eval/run_eval.py  --gt data/test.json     --pred data/test-answer.jsonl
 
 ## Training
 
